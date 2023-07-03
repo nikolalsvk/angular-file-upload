@@ -4,9 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { SingleFileUploadComponent } from './single-file-upload/single-file-upload.component';
+import { MultipleFileUploadComponent } from './multiple-file-upload/multiple-file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent, SingleFileUploadComponent],
+  declarations: [AppComponent, SingleFileUploadComponent, MultipleFileUploadComponent],
   imports: [BrowserModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
