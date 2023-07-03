@@ -8,26 +8,22 @@ import { catchError, throwError } from 'rxjs';
   styleUrls: ['./single-file-upload.component.css'],
 })
 export class SingleFileUploadComponent {
-  status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial'; // Variable to store file status
-  file: File | null = null; // Variable to store file
-  fileName: string | null = null; // Variable to store file name
+  status: 'initial' | 'uploading' | 'success' | 'fail' = 'initial';
+  file: File | null = null;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  // On file Select
   onChange(event: any) {
     const file: File = event.target.files[0];
 
     if (file) {
       this.status = 'initial';
       this.file = file;
-      this.fileName = file.name;
     }
   }
 
-  // onUpload method
   onUpload() {
     if (this.file) {
       const formData = new FormData();
