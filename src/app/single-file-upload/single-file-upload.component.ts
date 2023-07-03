@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { catchError, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-single-file-upload',
@@ -30,18 +30,18 @@ export class SingleFileUploadComponent {
 
       formData.append('thumbnail', this.file, this.file.name);
 
-      const upload$ = this.http.post('https://httpbin.org/post', formData).pipe(
-        catchError((error) => {
-          this.status = 'fail';
-          return throwError(() => error);
-        })
-      );
+      const upload$ = this.http.post('https://httpbin.org/post', formData);
 
       this.status = 'uploading';
 
-      upload$.subscribe(() => {
-        console.log('Upload completed');
-        this.status = 'success';
+      upload$.subscribe({
+        next: () => {
+          this.status = 'success';
+        },
+        error: (error: any) => {
+          this.status = 'fail';
+          return throwError(() => error);
+        },
       });
     }
   }
