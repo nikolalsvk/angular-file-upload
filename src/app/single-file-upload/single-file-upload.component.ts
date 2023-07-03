@@ -28,7 +28,7 @@ export class SingleFileUploadComponent {
     if (this.file) {
       const formData = new FormData();
 
-      formData.append('thumbnail', this.file, this.file.name);
+      formData.append('file', this.file, this.file.name);
 
       const upload$ = this.http.post('https://httpbin.org/post', formData);
 
